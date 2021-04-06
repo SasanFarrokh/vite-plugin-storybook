@@ -1,0 +1,25 @@
+{
+  "name": "storybook-simple-vite-hardcoded",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@storybook/addons": "^6.2.3",
+    "@storybook/core-client": "^6.2.3",
+    "@storybook/core-common": "^6.2.3",
+    "@storybook/theming": "^6.2.3",
+    "@storybook/ui": "^6.2.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@storybook/react": "^6.2.3",
+    "storybook-react": "^3.2.16",
+    "vite": "^2.1.5"
+  }
+}

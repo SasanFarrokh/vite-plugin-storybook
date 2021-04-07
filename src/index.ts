@@ -11,15 +11,15 @@ export default (options: Partial<StorybookVitePluginOptions>): Plugin => {
     const STORYBOOK_PREVIEW_PATH = STORYBOOK_PATH + '/iframe.html'
     const STORYBOOK_PREVIEW_SCRIPT_PATH = STORYBOOK_PATH + '/preview.js'
 
-    let framework: string = options.framework ? '@storybook/' + options.framework : null
+    let framework = options.framework ? '@storybook/' + options.framework : null
 
-    let stories = [].concat(options.stories)
+    let stories = ([] as string[]).concat(options.stories || [])
 
     return {
         name: 'storybook-vite-plugin',
         configureServer(app) {
             app.middlewares.use((req, res, next) => {
-                const path = req.url.replace(/\/?(\?.+)?$/, '')
+                const path = req.url?.replace(/\/?(\?.+)?$/, '') || ''
 
                 const generator = {
                     [STORYBOOK_PATH]: () => generateManagerIframe(STORYBOOK_PATH),
@@ -32,7 +32,7 @@ export default (options: Partial<StorybookVitePluginOptions>): Plugin => {
 
                 return generator()
                     .then(html => {
-                        return app.transformIndexHtml(req.url, html)
+                        return app.transformIndexHtml(req.url!, html)
                     }).then(html => {
                         res.write(html)
                         res.end()
@@ -73,7 +73,7 @@ export default (options: Partial<StorybookVitePluginOptions>): Plugin => {
                 return generateManagerJs()
             }
             if (id === STORYBOOK_PREVIEW_SCRIPT_PATH) {
-                return generatePreviewJs({ stories, framework })
+                return generatePreviewJs({ stories, framework: framework! })
             }
         }
     };

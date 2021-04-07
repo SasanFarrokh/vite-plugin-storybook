@@ -1,11 +1,12 @@
 {
-  "name": "storybook-simple-vite-hardcoded",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "vite-plugin-storybook",
+  "version": "0.0.1",
+  "description": "An experimental project to serve storybook over Vite",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "scripts": {
     "dev": "tsup src/index.ts --watch",
-    "build": "tsup src/index.ts --dts",
+    "build": "tsup src/index.ts --dts --format esm,cjs",
     "start": "vite"
   },
   "author": "",
